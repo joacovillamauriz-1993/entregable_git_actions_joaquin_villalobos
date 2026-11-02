@@ -38,7 +38,7 @@ jobs:                       # Define los trabajos que va a realizar el workflow
     
     steps:
       - name: Descargar proyecto  # Acción 1 Job: Dar acceso al runner para que pueda acceder a los archivos del proyecto 
-        uses: actions/checkout@v3 # 'uses' ejecuta una Action reutilizable (clona tu repo en el runner)
+        uses: actions/checkout@v4 # 'uses' ejecuta una Action reutilizable (clona tu repo en el runner)
 
       - name: Generación archivo  # Acción 2: Generar archivo de reporte solicitado
         run: echo "Reporte de ventas para el entorno ${{ matrix.entorno }}" > reporte_${{ matrix.entorno }}.txt   # Acción de generar un reporte de ventas para cada entorno definido en la Matrix Strategy
