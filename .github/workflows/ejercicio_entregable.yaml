@@ -16,7 +16,7 @@ jobs:                       # Define los trabajos que va a realizar el workflow
     runs-on: ubuntu-latest  # Determina dónde se va ejecutar el job. En este caso, en una máquina virtual con Ubuntu
     steps:                  # Son los pasos que se ejecutarán dentro del job y en el orden definido.
       - name: Descargar proyecto  # Acción 1 Job: Dar acceso al runner para que pueda acceder a los archivos del proyecto 
-        uses: actions/checkout@v3 # 'uses' ejecuta una Action reutilizable (clona tu repo en el runner)
+        uses: actions/checkout@v4 # 'uses' ejecuta una Action reutilizable (clona tu repo en el runner)
 
       - name: Validar ventas JSON # Acción 2: Cumplir con validación solicitada
         run: jq . ventas.json     # 'run' ejecuta comandos de terminal/bash (valida la sintaxis del JSON)
@@ -44,7 +44,7 @@ jobs:                       # Define los trabajos que va a realizar el workflow
         run: echo "Reporte de ventas para el entorno ${{ matrix.entorno }}" > reporte_${{ matrix.entorno }}.txt   # Acción de generar un reporte de ventas para cada entorno definido en la Matrix Strategy
 
       - name: Subir Artifact            # Acción 3 del Job: Subir el archivo.txt generado en el step previo
-        uses: actions/upload-artifact@v3   # Al querer cargar algo a GitHub necesitamos usar los artifacts
+        uses: actions/upload-artifact@v4   # Al querer cargar algo a GitHub necesitamos usar los artifacts
         with:
           name: reporte-${{ matrix.entorno }}       # Es la etiqueta/nombre con la que se guardará el paquete de dasta en el panel de GitHub.
           path: reporte_${{ matrix.entorno }}.txt   # Es la ruta dentro de la máquina virtual donde la Action debe ir a buscar el archivo que quieres subir
